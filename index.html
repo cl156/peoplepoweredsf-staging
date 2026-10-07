@@ -135,15 +135,27 @@
       .track { position: relative; display: flex; width: max-content; height: 100%;
         background: linear-gradient(90deg,
           #FFE7C2 0%, #FFD3C4 10%, #FFC2D6 20%, #F2D9EE 32%, #DCE8F8 44%, #D3ECF0 56%, #E2F3E8 68%,
-          #C9CFE6 78%, #6A7299 86%, #2A3355 93%, #1B2340 100%); }
+          #DAD8F0 79%, #B9A9DC 90%, #8E79C0 100%); }
 
       /* the street: skyline tiles laid end to end, every other one mirrored so the hills join up */
       .ground { display: block; position: absolute; left: 0; bottom: 0; width: 100%; z-index: 1; overflow: hidden; pointer-events: none; }
       .ground .tiles { display: flex; }
       .ground .tiles img { flex: 0 0 max(100vw, 1000px); width: max(100vw, 1000px); height: auto; display: block; }
       .ground .tiles img:nth-child(even) { transform: scaleX(-1); }
-      .ground .sun { position: absolute; z-index: 0; left: 70vw; bottom: 5vw; width: 14vw; max-width: 240px; aspect-ratio: 1; border-radius: 50%; background: var(--yellow); }
       .ground .tiles { position: relative; z-index: 1; }
+
+
+      /* suns sit behind the street, so the houses cover their lower edge */
+      .track .sun { position: absolute; z-index: 0; bottom: 4vw; width: 14vw; max-width: 240px; aspect-ratio: 1; border-radius: 50%;
+        background: radial-gradient(circle at 50% 38%, #FFD97A 0%, #F6B92B 62%, #F2A23A 100%); pointer-events: none; }
+      .track .sun:not(.setting) { left: 70vw; }
+      .track .sun.setting { left: 413vw; bottom: 1.6vw; width: 22vw; max-width: 400px;
+        background: radial-gradient(circle at 50% 36%, #FFE08A 0%, #FFB347 50%, #F26B3A 100%); box-shadow: 0 0 120px 40px rgba(255, 150, 90, .45); }
+
+      /* the last panel: a sunset sky that fades in from the daytime street */
+      .track .dusk { position: absolute; z-index: 0; top: 0; bottom: 0; left: 400vw; width: 100vw;
+        background: linear-gradient(180deg, #2F2A63 0%, #7E3F86 38%, #D9575A 68%, #F59A3E 88%, #F6B92B 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 42%); mask-image: linear-gradient(90deg, transparent 0%, #000 42%); }
 
       .track .panel { flex: 0 0 100vw; height: 100%; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center;
         padding: 0 7vw clamp(96px, 8.8vw, 160px); background: none; overflow: hidden; }
@@ -165,8 +177,10 @@
       .card p { font-size: 1rem; line-height: 1.5; }
       .tag { margin-bottom: 8px; }
 
-      .track footer.panel { align-items: flex-end; justify-content: center; }
-      footer .wrap { max-width: 440px; }
+      .track footer.panel { align-items: flex-end; justify-content: center; padding-bottom: clamp(180px, 20vw, 300px); color: #fff; }
+      .track footer.panel p { color: #FBEFF4; }
+      .track footer.panel a { color: #FFD97A; }
+      .track footer.panel .wrap { max-width: 440px; }
       footer .back { display: inline-block; margin-top: 18px; font-weight: 700; }
 
       @media (max-height: 840px) {
@@ -212,8 +226,11 @@
 <main class="scroller" id="scroller" tabindex="0" aria-label="People Powered SF. On wide screens the page scrolls sideways.">
 <div class="track">
 
+  <div class="dusk" aria-hidden="true"></div>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="sun setting" aria-hidden="true"></div>
+
   <div class="ground" aria-hidden="true">
-    <div class="sun"></div>
     <div class="tiles">
       <img src="assets/skyline.svg" alt=""><img src="assets/skyline.svg" alt=""><img src="assets/skyline.svg" alt="">
       <img src="assets/skyline.svg" alt=""><img src="assets/skyline.svg" alt="">
@@ -282,7 +299,7 @@
     <img class="skyline" src="assets/skyline.svg" alt="" aria-hidden="true">
   </section>
 
-  <footer class="panel end">
+  <footer class="panel end" id="end">
     <div class="wrap">
       <h2>People Powered SF</h2>
       <p>A project of <a href="https://bloom-project.org">Bloom Project</a> and the <a href="https://relationaltechproject.org/">Relational Tech Project</a>.</p>
