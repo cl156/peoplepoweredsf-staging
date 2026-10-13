@@ -118,6 +118,8 @@
     footer { background: var(--navy); color: #cfd4e6; padding: 56px 0; font-size: .95rem; }
     footer h2 { color: #fff; font-size: 1.8rem; margin-bottom: 10px; }
     footer a { color: var(--yellow); }
+    footer .partners-label { margin: 0 0 10px; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+    footer .partners { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 1.1rem; font-weight: 600; }
     footer .back { display: none; }
 
     /* ---------- Horizontal mode: roomy screens only ----------
@@ -191,6 +193,7 @@
 
       .track footer.panel { align-items: flex-end; justify-content: center; padding-bottom: clamp(180px, 20vw, 300px); color: #fff; }
       .track footer.panel p { color: #FBEFF4; }
+      .track footer.panel .partners a { color: #FFD97A; }
       .track footer.panel a { color: #FFD97A; }
       .track footer.panel .wrap { max-width: 440px; }
       footer .back { display: inline-block; margin-top: 18px; font-weight: 700; }
@@ -325,8 +328,12 @@
   <footer class="panel end" id="end">
     <div class="wrap">
       <h2>People Powered SF</h2>
-      <p>A project of <a href="https://bloom-project.org">Bloom Project</a> and the <a href="https://relationaltechproject.org/">Relational Tech Project</a>.</p>
-      <p>In partnership with <a href="https://www.goodneighborlab.org/">Good Neighbor Lab</a>.</p>
+      <p class="partners-label">A partnership of</p>
+      <ul class="partners">
+        <li><a href="https://bloom-project.org">Bloom Project</a></li>
+        <li><a href="https://relationaltechproject.org/">Relational Tech Project</a></li>
+        <li><a href="https://www.goodneighborlab.org/">Good Neighbor Lab</a></li>
+      </ul>
       <a class="back" href="#top">← Back to the start</a>
     </div>
   </footer>
