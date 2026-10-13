@@ -74,6 +74,12 @@
     .hero h1 { font-size: clamp(2.8rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 22px; }
     .hero p.lede { font-size: clamp(1.15rem, 2.4vw, 1.5rem); max-width: 660px; color: #3A4366; margin: 0 0 34px; }
     .hint { display: none; }
+    .hero-grid { display: flex; flex-direction: column; gap: 36px; }
+    .video { margin: 0; width: min(300px, 100%); }
+    .phone { aspect-ratio: 9 / 16; width: 100%; border: 6px solid var(--navy); border-radius: 30px; overflow: hidden; background: var(--navy);
+      box-shadow: 0 18px 40px -14px rgba(27, 35, 64, .45); }
+    .phone iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .video figcaption { margin-top: 12px; font-size: .95rem; font-weight: 600; }
     .btn { display: inline-block; background: var(--navy); color: #fff; font-weight: 700; padding: 14px 26px; border-radius: 999px; text-decoration: none; }
     .btn:hover { filter: brightness(1.15); }
     .hoods { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 44px; }
@@ -148,7 +154,7 @@
       /* suns sit behind the street, so the houses cover their lower edge */
       .track .sun { position: absolute; z-index: 0; bottom: 4vw; width: 14vw; max-width: 240px; aspect-ratio: 1; border-radius: 50%;
         background: radial-gradient(circle at 50% 38%, #FFD97A 0%, #F6B92B 62%, #F2A23A 100%); pointer-events: none; }
-      .track .sun:not(.setting) { left: 70vw; }
+      .track .sun:not(.setting) { left: 50vw; }
       .track .sun.setting { left: 413vw; bottom: 1.6vw; width: 22vw; max-width: 400px;
         background: radial-gradient(circle at 50% 36%, #FFE08A 0%, #FFB347 50%, #F26B3A 100%); box-shadow: 0 0 120px 40px rgba(255, 150, 90, .45); }
 
@@ -163,7 +169,13 @@
       .track .panel .skyline { display: none; }
       .track section.tint { background: none; }
 
-      .hero h1 { font-size: clamp(3rem, 7.4vw, 6.4rem); }
+      .track .hero .wrap { max-width: 1280px; }
+      .hero-grid { flex-direction: row; align-items: center; justify-content: space-between; gap: 3vw; }
+      .hero-text { flex: 1 1 auto; min-width: 0; }
+      .video { flex: none; width: auto; }
+      .phone { height: min(56vh, 540px); width: auto; transform: rotate(2.2deg); }
+      .video figcaption { text-align: center; }
+      .hero h1 { font-size: clamp(3rem, 6.6vw, 6rem); }
       .hero p.lede { margin-bottom: 28px; }
       .hoods { margin-top: 32px; }
       .hint { display: flex; align-items: center; gap: 10px; margin: 30px 0 0; font-weight: 700; font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
@@ -238,7 +250,8 @@
   </div>
 
   <header class="panel hero" id="top">
-    <div class="wrap">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
       <h1>People Powered SF</h1>
       <p class="lede">Neighborhood Hosts and a Neighbor Room in every San Francisco neighborhood, connected by a shared toolkit.</p>
       <a class="btn" href="#hosts">See how it works</a>
@@ -247,6 +260,16 @@
         <span>CHINATOWN</span><span>TENDERLOIN</span><span>VISITACION VALLEY</span><span>NORTH BEACH</span><span>CASTRO</span>
       </div>
       <p class="hint" aria-hidden="true">Scroll sideways <span>→</span></p>
+      </div>
+      <figure class="video">
+        <div class="phone">
+          <iframe src="https://www.youtube-nocookie.com/embed/Xo2K2PISkjI?rel=0&amp;playsinline=1"
+                  title="People Powered SF: Hosts and Rooms in Every Neighborhood (video)"
+                  loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <figcaption><a href="https://www.youtube.com/shorts/Xo2K2PISkjI" rel="noopener">Watch on YouTube ↗</a></figcaption>
+      </figure>
     </div>
     <img class="skyline" src="assets/skyline-hero.svg" alt="" aria-hidden="true">
   </header>
@@ -303,6 +326,7 @@
     <div class="wrap">
       <h2>People Powered SF</h2>
       <p>A project of <a href="https://bloom-project.org">Bloom Project</a> and the <a href="https://relationaltechproject.org/">Relational Tech Project</a>.</p>
+      <p>In partnership with <a href="https://www.goodneighborlab.org/">Good Neighbor Lab</a>.</p>
       <a class="back" href="#top">← Back to the start</a>
     </div>
   </footer>
